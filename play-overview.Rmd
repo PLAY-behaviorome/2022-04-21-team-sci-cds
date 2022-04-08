@@ -10,6 +10,8 @@ output:
     widescreen: true
     incremental: false
     transition: default
+params:
+  db_login: "email@university.com"
 ---
 
 ```{r setup, include=FALSE}
@@ -17,6 +19,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE,
                       message = FALSE,
                       fig.align = "center",
                       out.width = "800px")
+
+library(tidyverse)
 ```
 
 ## Acknowledgements
@@ -31,6 +35,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE,
 - Challenges to face
 - Challenges met
 - Challenges yet-to-be-met
+- A preview
 
 # What is PLAY
 
@@ -83,10 +88,14 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE,
 
 # Challenges met
 
+---
+
 - Only English and Spanish
 - Informed by Census demographics
 
 # Challenges yet-to-be-met
+
+---
 
 - Findable, useable beyond launch group
 - Limitations of Databrary 1.0
@@ -95,6 +104,141 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE,
 - Add-on, follow-up studies
     - New data
     - Augmented, new annotations
+    
+# A preview
+
+## Databrary {.smaller}
+
+<https://nyu.databrary.org/volume/444>
+
+## 1-hour natural play {.smaller}
+
+<https://nyu.databrary.org/slot/18825/78777000,82445800/asset/85849/download?inline=true>
+
+## House walk-through {.smaller}
+
+<https://nyu.databrary.org/slot/18825/69908000,70431136/asset/85853/download?inline=true>
+
+## Structured play {.smaller}
+
+<https://nyu.databrary.org/slot/18825/85767000,86228590/asset/85865/download?inline=true>
+
+## Parent-report questionnaires {.smaller}
+
+<https://nyu.databrary.org/slot/18825/82179000,85191864/asset/85867/download?inline=true>
+
+## Load PLAY survey data
+
+```
+databraryapi::login_db("myemail@university.edu")
+play_data <- databraryapi::read_csv_data_as_df(session_id = 51539, asset_id = 365016)
+```
+
+```{r, include=FALSE}
+databraryapi::login_db(params$db_login)
+play_data <- databraryapi::read_csv_data_as_df(session_id = 51539, asset_id = 365016)
+```
+
+## Demographics
+
+````
+xtabs(formula = ~ child_sex + age_group, data = play_data) %>%
+  knitr::kable(., format = 'html') %>%
+  kableExtra::kable_classic(.)
+````
+
+```{r}
+xtabs(formula = ~ child_sex + age_group, data = play_data) %>%
+  knitr::kable(., format = 'html') %>%
+  kableExtra::kable_classic(.)
+```
+
+---
+
+````
+xtabs(formula = ~ child_race + child_ethnicity, data = play_data) %>%
+  knitr::kable(., format = 'html') %>%
+  kableExtra::kable_classic(.)
+````
+
+```{r}
+xtabs(formula = ~ child_race + child_ethnicity, data = play_data) %>%
+  knitr::kable(., format = 'html') %>%
+  kableExtra::kable_classic(.)
+```
+
+## Locomotor milestones
+
+```{r, echo=FALSE}
+loco_feeding_data <- play_data %>%
+  dplyr::select(
+    .,
+    age_group,
+    child_sex,
+    locomotor_milestones.who_walk.who_walk_onset_mo,
+    locomotor_milestones.k_walk.k_walk_onset_mo,
+    locomotor_milestones.crawl_onset.crawl_onset_mo,
+    health.feeding_nutrition.solidfood_age,
+    health.feeding_nutrition.breastfeed,
+  ) %>%
+  dplyr::rename(
+    .,
+    walk_mos_who = locomotor_milestones.who_walk.who_walk_onset_mo,
+    walk_mos = locomotor_milestones.k_walk.k_walk_onset_mo,
+    crawl_mos = locomotor_milestones.crawl_onset.crawl_onset_mo,
+    solid_food_mos = health.feeding_nutrition.solidfood_age,
+    breastfeed = health.feeding_nutrition.breastfeed
+  )
+
+crawl_walk_p <- loco_feeding_data %>%
+  ggplot(.) +
+  aes(walk_mos, crawl_mos, color = child_sex) +
+  geom_smooth(method = "lm", aes(group = 1)) +
+  geom_point() +
+  theme(legend.position = "bottom") 
+
+ggExtra::ggMarginal(
+  crawl_walk_p,
+  loco_feeding_data,
+  walk_mos,
+  crawl_mos,
+  type = "density",
+  margins = "both",
+  groupColour = TRUE,
+  groupFill = TRUE
+)
+```
+
+## Feeding
+
+```{r, echo=FALSE}
+crawl_solid_p <- loco_feeding_data %>%
+  ggplot(.) +
+  aes(
+    x = crawl_mos,
+    y = solid_food_mos,
+    color = child_sex
+  ) +
+  geom_point() +
+  geom_smooth(method = "lm", aes(group = 1)) +
+  theme(legend.position = "bottom") +
+  coord_fixed()
+
+ggExtra::ggMarginal(
+  crawl_solid_p,
+  loco_feeding_data,
+  crawl_mos,
+  solid_food_mos,
+  type = "density",
+  margins = "both",
+  groupColour = TRUE,
+  groupFill = TRUE
+)
+```
+
+```{r}
+databraryapi::logout_db()
+```
 
 ```{r, child="splash.Rmd"}
 ```
