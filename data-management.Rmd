@@ -1,0 +1,55 @@
+---
+title: "Data management"
+subtitle: "CDS 2022 BTS workshop"
+author: "Rick Gilmore & Kasey Soska"
+date: "`r Sys.time()`"
+output:
+  ioslides_presentation:
+    css: css/ioslides.css
+    logo: img/PLAY-leaf.png 
+    widescreen: true
+    incremental: false
+    transition: default
+---
+
+## Acknowledgements
+
+- Support from NICHD, NIH OD, NIMH, NIDA, OBSSR, NSF
+- Karen Adolph, Cathie Tamis-LeMonda, Orit Hertzberg, Tiger Teng
+
+## Overview
+
+- A cautionary tale
+- (Hyper)active Curation
+
+# A cautionary tale
+
+---
+
+<!-- Data Sharing and Management Snafu in 3 Short Acts -->
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/66oNv_DJuPc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<small>[[@NYU_Health_Sciences_Library2013-gp]](https://www.youtube.com/watch?v=66oNv_DJuPc)</small>
+
+# (Hyper)active curation
+
+## What is it?
+
+- Embed data curation within data collection workflow
+- Conduct rigorous quality assurance (QA) during collection
+- Curate data with specific sharing target in mind
+
+## Workflow
+
+## Quality assurance (video)
+
+- Show semi-automated QA reports from Databrary
+
+## Data export & cleaning (surveys)
+
+```{r, child="splash.Rmd"}
+```
+
+```{r, child="resources.Rmd"}
+```

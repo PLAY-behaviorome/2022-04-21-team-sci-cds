@@ -1,0 +1,13 @@
+---
+
+<div class="centered">
+<video width="800" loop data-autoplay>
+  <source src="https://github.com/gilmore-lab/DEVSEC-2018/blob/master/mov/databrary-splash.mp4?raw=true" type="video/mp4">
+  </video>
+
+rog1@psu.edu</br>
+
+<https://play-project.org></br>
+<https://gilmore-lab.github.io></br>
+
+</div>

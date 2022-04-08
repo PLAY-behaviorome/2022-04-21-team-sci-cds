@@ -1,0 +1,26 @@
+# Resources
+
+<!-- Scrolling final reference page -->
+<!-- http://stackoverflow.com/q/38260799 -->
+<style>
+slides > slide { overflow: scroll; }
+slides > slide:not(.nobackground):before {
+  background: none;
+  }
+slides > slide:not(.nobackground):after {
+  content: '';
+  background: none;
+  }
+}
+</style>
+<!-- Scrolling final reference page -->
+
+---
+  
+This talk was produced on `r Sys.Date()` in [RStudio](http://rstudio.com) using R Markdown and the ioslides framework. The code and materials used to generate the slides may be found at <https://github.com/PLAY-behaviorome/2022-04-21-team-sci-cds/>. Information about the R Session that produced the code is as follows:
+  
+```{r session-info}
+sessionInfo()
+```
+
+## References {.smaller}

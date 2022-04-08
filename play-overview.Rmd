@@ -1,0 +1,103 @@
+---
+title: "Play & Learning Across a Year (PLAY)"
+author: "Rick Gilmore & Kasey Soska"
+subtitle: "CDS 2022 BTS workshop"
+date: "`r Sys.time()`"
+output:
+  ioslides_presentation:
+    css: css/ioslides.css
+    logo: img/PLAY-leaf.png 
+    widescreen: true
+    incremental: false
+    transition: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, 
+                      message = FALSE,
+                      fig.align = "center",
+                      out.width = "800px")
+```
+
+## Acknowledgements
+
+- Support from NICHD, NIH OD, NIMH, NIDA, OBSSR, NSF
+- Karen Adolph, Cathie Tamis-LeMonda, Orit Hertzberg, Tiger Teng
+
+## Overview
+
+- What is PLAY
+- Why PLAY
+- Challenges to face
+- Challenges met
+- Challenges yet-to-be-met
+
+# What is PLAY
+
+<!-- Insert PLAY video from Databrary Board -->
+
+---
+
+- 1,000 mother-infant dyads (12-, 18-, 24-mos)
+- 1 hr natural behavior (video)
+- 5 min structured play (video)
+- House tour (video)
+- Parent-report questionnaires
+
+---
+
+- Foundational video coding passes
+    - Speech \& language
+    - Emotional expression
+    - Object interaction
+    - Locomotion \& physical activity
+    
+---
+
+- Common, shared data
+- Rigorous QA control
+- But investigator-specific questions...
+- Dataset as deliverable
+- Catalyze/expand capacity to exploit video
+
+# Why PLAY
+
+## Natural behavior
+
+## Big data developmental science
+
+## Open science
+
+- Full transparency
+- Re-useability
+
+# Challenges to face
+
+## Sampling
+
+- Age range(s)
+- What language backgrounds...
+- Where to sample...
+- What to vary, what to keep constant...
+- Is 'an hour in the life' representative?
+
+# Challenges met
+
+- Only English and Spanish
+- Informed by Census demographics
+
+# Challenges yet-to-be-met
+
+- Findable, useable beyond launch group
+- Limitations of Databrary 1.0
+    - Virtual volumes?
+- Versioning data, protocol, coding scheme
+- Add-on, follow-up studies
+    - New data
+    - Augmented, new annotations
+
+```{r, child="splash.Rmd"}
+```
+
+```{r, child="resources.Rmd"}
+```
