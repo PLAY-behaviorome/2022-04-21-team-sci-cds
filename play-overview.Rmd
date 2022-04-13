@@ -49,9 +49,11 @@ knitr::include_graphics("img/PLAY-logo.png")
 
 ---
 
-<video width="100%" controls>
+<video width="80%" controls>
   <source src="https://www.anhourinthelife.org/img/PLAY-parents-noaudio.mp4" type="video/mp4">
 </video>
+
+<https://anhourinthelife.org>
 
 ---
 
@@ -126,12 +128,13 @@ knitr::include_graphics("img/SRCD-policy.png")
 ## Sampling
 
 - Age range(s)
-- What language backgrounds...
-- Who to include?
-- Where to sample...
+- What language backgrounds
+- Who to include
+- Where to sample
 - What to vary, what to keep constant...
 - Is ['an hour in the life'](https://www.anhourinthelife.org/) representative?
 - What survey questions \& how to collect
+- What behaviors to code
 
 # Challenges met
 
@@ -181,11 +184,15 @@ knitr::include_graphics("img/play-race-by-county.png")
 knitr::include_graphics("img/kobotoolbox.png")
 ```
 
+## Behaviors to code
+
+<https://nyu.databrary.org/slot/27087/0,372193/asset/119877/download?inline=true>
+
 # Challenges yet-to-be-met
 
 ---
 
-- Findable, useable beyond launch group
+- Findable, usable beyond launch group
 - Limitations of Databrary 1.0
     - Virtual volumes?
 - Versioning data, protocol, coding scheme

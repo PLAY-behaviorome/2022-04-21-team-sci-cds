@@ -3,6 +3,8 @@ title: "Data management"
 subtitle: "CDS 2022 BTS workshop"
 author: "Rick Gilmore & Kasey Soska"
 date: "`r Sys.time()`"
+bibliography: bib/psu-repro.bib
+csl: bib/apa.csl
 output:
   ioslides_presentation:
     css: css/ioslides.css
@@ -30,6 +32,7 @@ library(tidyverse)
 
 - A cautionary tale
 - (Hyper)active Curation
+- Lessons learned
 
 # A cautionary tale
 
@@ -43,16 +46,22 @@ library(tidyverse)
 
 # (Hyper)active curation
 
+---
+
+```{r, fig.cap="[[@Soska2021-mh]](http://dx.doi.org/10.7191/jeslib.2021.1208)", out.width="700px"}
+knitr::include_graphics("img/hyperactive.png")
+```
+
 ## What is it?
 
 - Embed data curation within data collection workflow
 - Conduct rigorous quality assurance (QA) during collection
 - Curate data with specific sharing target in mind
 
-## Workflow
+## Workflow {.smaller}
 
-```{r}
-knitr::include_graphics("img/overview-project.png")
+```{r, fig.cap="[[@Soska2021-mh]](http://dx.doi.org/10.7191/jeslib.2021.1208)"}
+knitr::include_graphics("img/soska-etal-figure3.png")
 ```
 
 ## Collection
@@ -69,9 +78,60 @@ knitr::include_graphics("img/overview-coding.png")
 
 ## Quality assurance (video)
 
-- Show semi-automated QA reports from Databrary
+- "Heavy" vs. "light" QA
+- Semi-automated QA reports from Databrary
+    - <https://github.com/PLAY-behaviorome/workflow/tree/master/session_qa_reports>
+    - Not public
+
+---
+
+```{r, fig.cap="[[@Soska2021-mh]](http://dx.doi.org/10.7191/jeslib.2021.1208)"}
+knitr::include_graphics("img/soska-etal-figure7.png")
+```
 
 ## Data export & cleaning (surveys)
+
+- <https://github.com/PLAY-behaviorome/KoBoToolbox>
+- Series of enumerated R Markdown documents
+
+---
+
+```{r, fig.cap="https://github.com/PLAY-behaviorome/KoBoToolbox"}
+knitr::include_graphics("img/kobo-workflow.png")
+```
+
+---
+
+- Final CSV uploaded to Databrary
+- `play_data <- databraryapi::read_csv_data_as_df(session_id = 51539, asset_id = 366382)`
+
+## Summarized
+
+```{r, fig.cap="[[@Soska2021-mh]](http://dx.doi.org/10.7191/jeslib.2021.1208)"}
+knitr::include_graphics("img/soska-etal-figure1.png")
+```
+
+## In-process
+
+- Moving protocol to `bookdown`
+- <https://PLAY-behaviorome.github.io/protocol>
+
+# Lessons learned
+
+## Plan your work; work your plan
+
+- You have to curate data for yourself
+- Clear to you == (often) clear to others
+- Automate as much as possible
+    - Script, use APIs
+- Expect to iterate
+- Don't make the perfect the enemy of the good
+
+---
+
+```{r}
+knitr::include_graphics("img/PLAY-logo.png")
+```
 
 ```{r, child="splash.Rmd"}
 ```
