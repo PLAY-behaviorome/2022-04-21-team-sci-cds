@@ -12,6 +12,15 @@ output:
     transition: default
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, 
+                      message = FALSE,
+                      fig.align = "center",
+                      out.width = "800px")
+
+library(tidyverse)
+```
+
 ## Acknowledgements
 
 - Support from NICHD, NIH OD, NIMH, NIDA, OBSSR, NSF
@@ -41,6 +50,22 @@ output:
 - Curate data with specific sharing target in mind
 
 ## Workflow
+
+```{r}
+knitr::include_graphics("img/overview-project.png")
+```
+
+## Collection
+
+```{r}
+knitr::include_graphics("img/overview-collecting.png")
+```
+
+## Coding (video annotation)
+
+```{r}
+knitr::include_graphics("img/overview-coding.png")
+```
 
 ## Quality assurance (video)
 

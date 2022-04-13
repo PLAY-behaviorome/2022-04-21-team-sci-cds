@@ -3,6 +3,8 @@ title: "Play & Learning Across a Year (PLAY)"
 author: "Rick Gilmore & Kasey Soska"
 subtitle: "CDS 2022 BTS workshop"
 date: "`r Sys.time()`"
+bibliography: bib/psu-repro.bib
+csl: bib/apa.csl
 output:
   ioslides_presentation:
     css: css/ioslides.css
@@ -39,7 +41,17 @@ library(tidyverse)
 
 # What is PLAY
 
-<!-- Insert PLAY video from Databrary Board -->
+---
+
+```{r}
+knitr::include_graphics("img/PLAY-logo.png")
+```
+
+---
+
+<video width="100%" controls>
+  <source src="https://www.anhourinthelife.org/img/PLAY-parents-noaudio.mp4" type="video/mp4">
+</video>
 
 ---
 
@@ -48,6 +60,7 @@ library(tidyverse)
 - 5 min structured play (video)
 - House tour (video)
 - Parent-report questionnaires
+- Ambient sound levels
 
 ---
 
@@ -61,7 +74,7 @@ library(tidyverse)
 
 - Common, shared data
 - Rigorous QA control
-- But investigator-specific questions...
+- Investigator-specific questions...
 - Dataset as deliverable
 - Catalyze/expand capacity to exploit video
 
@@ -69,12 +82,44 @@ library(tidyverse)
 
 ## Natural behavior
 
+- Environments outside the lab most representative of children's experiences
+- Rich, varied, interesting, \& important [[@Adolph2020-rj]](http://dx.doi.org/10.1111/infa.12336)
+- Can be captured with video [[@Adolph_KE_Gilmore_RO_Kennedy_JL2017-va]](https://www.apa.org/science/about/psa/2017/10/video-data)
+- Can be analyzed systematically by human observers
+- Tackling the 'generalizability crisis' [[@Yarkoni2020-se]](http://dx.doi.org/10.1017/S0140525X20001685)
+
 ## Big data developmental science
+
+- [[@gilmore_big_2016]](https://doi.org/10.1002/wcs.1379)
+- No comparable data corpus exists
+- Existing datasets smaller in scale
 
 ## Open science
 
 - Full transparency
-- Re-useability
+    - Planning workshop: https://nyu.databrary.org/volume/254
+    - Web site (https://play-project.org), https://github.com/PLAY-behaviorome/PLAY-project.org
+    - Data management \& curation [[@Soska2021-mh]](http://dx.doi.org/10.7191/jeslib.2021.1208)
+- Planning for future reuse
+
+---
+
+```{r}
+knitr::include_graphics("img/SRCD-policy.png")
+```
+
+<https://www.srcd.org/policy-scientific-integrity-transparency-and-openness>
+
+---
+
+>"*The advancement of detailed and diverse knowledge about the development of the world’s children is essential for improving the health and well-being of humanity. The Society for Research in Child Development (SRCD) regards scientific integrity, transparency, and openness as essential for the conduct of research and its application to practice and policy. These values apply to research conduct, to the teaching of scientific methods, and to the translation of science into practice and policy.*"
+
+<div class="center">
+<https://www.srcd.org/policy-scientific-integrity-transparency-and-openness>
+<div>
+---
+
+[[@Gilmore2020-sl]](https://doi.org/10.1111/cdep.12360) | [[@Gennetian2020-ji]](https://doi.org/10.1111/cdep.12356)
 
 # Challenges to face
 
@@ -82,16 +127,59 @@ library(tidyverse)
 
 - Age range(s)
 - What language backgrounds...
+- Who to include?
 - Where to sample...
 - What to vary, what to keep constant...
-- Is 'an hour in the life' representative?
+- Is ['an hour in the life'](https://www.anhourinthelife.org/) representative?
+- What survey questions \& how to collect
 
 # Challenges met
 
 ---
 
-- Only English and Spanish
+- 12-mo-olds, 18-mo-olds, & 24-mo-olds
+- Only English and Spanish-speaking households
+- Mom and child
+- 31 sites
+
+---
+
+```{r}
+knitr::include_graphics("img/PLAY-sites.png")
+```
+
+---
+
 - Informed by Census demographics
+  - https://github.com/PLAY-behaviorome/site-demographics
+  - [`tidycensus`](https://walker-data.com/tidycensus/) R package
+
+---
+
+```{r}
+knitr::include_graphics("img/play-race-by-county.png")
+```
+
+## Survey questions
+
+- Health
+- Patient Health Questionnaire (PHQ-4)
+- Locomotor milestones
+- MacArthur-Bates CDI
+
+---
+
+- ECBQ (Rothbart)
+- Media use
+- Pets
+- Household structure
+- Typical day?
+
+---
+
+```{r}
+knitr::include_graphics("img/kobotoolbox.png")
+```
 
 # Challenges yet-to-be-met
 
@@ -104,26 +192,33 @@ library(tidyverse)
 - Add-on, follow-up studies
     - New data
     - Augmented, new annotations
+- COVID-19
     
 # A preview
 
-## Databrary {.smaller}
+## Databrary
 
 <https://nyu.databrary.org/volume/444>
 
-## 1-hour natural play {.smaller}
+## Databrary access levels
+
+```{r}
+knitr::include_graphics("img/databrary-release-levels.png")
+```
+
+## 1-hour natural play
 
 <https://nyu.databrary.org/slot/18825/78777000,82445800/asset/85849/download?inline=true>
 
-## House walk-through {.smaller}
+## House walk-through
 
 <https://nyu.databrary.org/slot/18825/69908000,70431136/asset/85853/download?inline=true>
 
-## Structured play {.smaller}
+## Structured play
 
 <https://nyu.databrary.org/slot/18825/85767000,86228590/asset/85865/download?inline=true>
 
-## Parent-report questionnaires {.smaller}
+## Parent-report questionnaires
 
 <https://nyu.databrary.org/slot/18825/82179000,85191864/asset/85867/download?inline=true>
 
@@ -131,12 +226,13 @@ library(tidyverse)
 
 ```
 databraryapi::login_db("myemail@university.edu")
-play_data <- databraryapi::read_csv_data_as_df(session_id = 51539, asset_id = 365016)
+
+play_data <- databraryapi::read_csv_data_as_df(session_id = 51539, asset_id = 366382)
 ```
 
 ```{r, include=FALSE}
 databraryapi::login_db(params$db_login)
-play_data <- databraryapi::read_csv_data_as_df(session_id = 51539, asset_id = 365016)
+play_data <- databraryapi::read_csv_data_as_df(session_id = 51539, asset_id = 366382)
 ```
 
 ## Demographics
@@ -221,8 +317,7 @@ crawl_solid_p <- loco_feeding_data %>%
   ) +
   geom_point() +
   geom_smooth(method = "lm", aes(group = 1)) +
-  theme(legend.position = "bottom") +
-  coord_fixed()
+  theme(legend.position = "bottom")
 
 ggExtra::ggMarginal(
   crawl_solid_p,
@@ -236,8 +331,55 @@ ggExtra::ggMarginal(
 )
 ```
 
+## Typical behavior?
+
+````
+xtabs(formula = ~ typical_behavior + age_group, data = typical_data) %>%
+  knitr::kable(., format = 'html') %>%
+  kableExtra::kable_classic(.)
+````
+
+```{r, echo=FALSE}
+typical_data <- play_data %>%
+  dplyr::select(., child_sex,
+                age_group,
+                typical_day.typical_behavior,
+                typical_day.typical_activities,
+                typical_day.typical_nightmorning,
+                typical_day.typical_otherthanme) %>%
+  dplyr::rename(., 
+                typical_behavior = typical_day.typical_behavior,
+                typical_activities = typical_day.typical_activities,
+                typical_nightmorning = typical_day.typical_nightmorning,
+                typical_otherthanme = typical_day.typical_otherthanme)
+
+xtabs(formula = ~ typical_behavior + age_group, data = typical_data) %>%
+  knitr::kable(., format = 'html') %>%
+  kableExtra::kable_classic(.)
+```
+
+## Typical night/morning?
+
+````
+xtabs(formula = ~ typical_nightmorning + age_group, data = typical_data) %>%
+  knitr::kable(., format = 'html') %>%
+  kableExtra::kable_classic(.)
+````
+
+```{r, echo=FALSE, message=FALSE}
+xtabs(formula = ~ typical_nightmorning + age_group, data = typical_data) %>%
+  knitr::kable(., format = 'html') %>%
+  kableExtra::kable_classic(.)
+```
+
 ```{r}
 databraryapi::logout_db()
+```
+
+---
+
+```{r}
+knitr::include_graphics("img/PLAY-logo.png")
 ```
 
 ```{r, child="splash.Rmd"}
