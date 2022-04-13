@@ -1,0 +1,227 @@
+---
+title: "Collection site demographics"
+author: "Rick Gilmore"
+date: "`r Sys.time()`"
+output: html_document
+---
+
+
+# Purpose
+
+This document generates demographic figures for the PLAY data sites. It draws upon code and data in the PLAY-behaviorome/site-demographics repository.
+
+The source data comes from a directory hidden to git for the time being.
+
+# Set-up
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.path = "img/",
+  dev = "png",
+  fig.align = "center",
+  fig.width = 7,
+  fig.height = 5
+)
+
+library(tidyverse)
+```
+
+# Race
+
+```{r race-prep}
+race <-
+  readr::read_csv("csv/collection-by-county-race.csv")
+
+race_df <- race %>%
+  dplyr::rename(., county = NAME) %>%
+  dplyr::mutate(., multiple = total - one_race) %>%
+  dplyr::rename(., site_code = SiteCode) %>%
+  dplyr::mutate(
+    .,
+    am_indian = am_indian / total,
+    asian = asian / total,
+    black = black / total,
+    native_hawaiian = native_hawaiian / total,
+    other = other / total,
+    white = white / total,
+    multiple = multiple / total
+  ) %>%
+  dplyr::select(
+    .,
+    site_code,
+    county,
+    am_indian,
+    asian,
+    black,
+    native_hawaiian,
+    other,
+    white,
+    multiple
+  ) %>%
+  dplyr::arrange(., white) %>%
+  dplyr::mutate(., white_ranking = 1:length(white)) %>%
+  tidyr::pivot_longer(
+    .,
+    cols = c(
+      'am_indian',
+      'asian',
+      'black',
+      'native_hawaiian',
+      'other',
+      'white',
+      'multiple'
+    ),
+    names_to = "race",
+    values_to = "p_pop"
+  ) %>%
+  dplyr::arrange(., white_ranking) 
+
+```
+
+
+```{r race-fig}
+race_df %>%
+  ggplot(.) +
+  aes(fill = race,
+      x = white_ranking,
+      y = p_pop) +
+  geom_bar(position = "fill", stat = "identity") +
+  theme_classic() +
+  theme(axis.text.x = element_blank()) +
+  theme(axis.ticks.x = element_blank()) +
+  theme(legend.title = element_blank()) +
+  xlab("") +
+  ylab("p(pop)")
+```
+
+## Spanish-speakers
+
+```{r lang-prep}
+spanish <- readr::read_csv("csv/collection-by-county-spanish.csv")
+
+spanish_df <- spanish %>%
+  dplyr::rename(.,
+                county = NAME,
+                lang_spoken = pop,
+                p_speakers = n) %>%
+  tidyr::pivot_wider(.,
+                     id_cols = c('county', 'p_speakers'),
+                     names_from = lang_spoken,
+                     values_from = p_speakers,
+                     values_fn = mean) %>%
+  dplyr::select(., -c('English_only', 'Spanish', 'Other')) %>%
+  dplyr::rename(., English_only = p_English_only,
+                Spanish = p_Spanish,
+                Other = p_Other) %>%
+  dplyr::arrange(., Spanish) %>%
+  dplyr::mutate(., span_ranking = 1:length(Spanish)) %>%
+  tidyr::pivot_longer(., cols = -c('county', 'span_ranking'), names_to = "language", values_to = "p_pop")
+```
+
+```{r langs-spoken}
+spanish_df %>%
+  ggplot(.) +
+  aes(fill = language,
+      x = span_ranking,
+      y = p_pop) +
+  # geom_bar(position = "fill", stat = "identity") +
+  geom_col() +
+  theme_classic() +
+  theme(axis.text.x = element_blank()) +
+  theme(axis.ticks.x = element_blank()) +
+  theme(legend.title = element_blank()) +
+  xlab("") +
+  ylab("p(pop)")
+```
+
+## Education
+
+```{r ed-prep}
+ed <- readr::read_csv("csv/collection-by-county-education.csv")
+
+ed_df <- ed %>%
+  dplyr::rename(., county = NAME) %>%
+  dplyr::mutate(
+    .,
+    lt_hs = lt_hs / total,
+    hs_grad = hs_grad / total,
+    some_coll = some_coll / total,
+    ba = ba / total,
+    ba_plus = ba_plus / total
+  ) %>%
+  dplyr::arrange(., lt_hs) %>%
+  dplyr::mutate(., lt_hs_index = 1:length(lt_hs)) %>%
+  tidyr::pivot_longer(
+    .,
+    cols = c('lt_hs', 'hs_grad', 'some_coll', 'ba', 'ba_plus'),
+    names_to = "education",
+    values_to = "p_pop"
+  ) %>%
+  dplyr::select(.,-c('total')) %>%
+  dplyr::mutate(., education = factor(
+    education,
+    levels = c('lt_hs', 'hs_grad', 'some_coll', 'ba', 'ba_plus')
+  ))
+```
+
+```{r ed-attain}
+ed_df %>%
+  ggplot(.) +
+  aes(fill = education,
+      x = lt_hs_index,
+      y = p_pop) +
+  geom_col() +
+  theme_classic() +
+  theme(axis.text.x = element_blank()) +
+  theme(axis.ticks.x = element_blank()) +
+  theme(legend.title = element_blank()) +
+  xlab("") +
+  ylab("p(pop)")
+```
+
+## Income
+
+```{r income-prep}
+income <- readr::read_csv("csv/collection-by-county-income.csv")
+
+income_df <- income %>%
+  dplyr::rename(., county = NAME) %>%
+  dplyr::mutate(
+    .,
+    lt_25K = lt_25K / total,
+    b25_50K = b25_50K / total,
+    b50_100K = b50_100K / total,
+    gt_100K = gt_100K / total
+  ) %>%
+  dplyr::arrange(., lt_25K) %>%
+  dplyr::mutate(., lt_25K_index = 1:length(lt_25K)) %>%
+  tidyr::pivot_longer(
+    .,
+    cols = c('lt_25K', 'b25_50K', 'b50_100K', 'gt_100K'),
+    names_to = "income",
+    values_to = "p_pop"
+  ) %>%
+  dplyr::select(., -c('total')) %>%
+  dplyr::mutate(., education = ordered(income, levels = c(
+    'lt_25K', 'b25_50K', 'b50_100K', 'gt_100K'
+  )))
+```
+
+```{r income}
+income_df %>%
+  ggplot(.) +
+  aes(fill = income,
+      x = lt_25K_index,
+      y = p_pop) +
+  geom_col() +
+  theme_classic() +
+  theme(axis.text.x = element_blank()) +
+  theme(axis.ticks.x = element_blank()) +
+  theme(legend.title = element_blank()) +
+  xlab("") +
+  ylab("p(pop)")
+```
+

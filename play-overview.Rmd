@@ -156,12 +156,32 @@ knitr::include_graphics("img/PLAY-sites.png")
 - Informed by Census demographics
   - https://github.com/PLAY-behaviorome/site-demographics
   - [`tidycensus`](https://walker-data.com/tidycensus/) R package
+  - `collection-site-demographics.Rmd`
 
 ---
 
-```{r}
-knitr::include_graphics("img/play-race-by-county.png")
+```{r, fig.cap="Races reported in PLAY counties", out.height="500px"}
+knitr::include_graphics("img/race-fig-1.png")
 ```
+
+---
+
+```{r, fig.cap="Languages spoken in PLAY counties", out.height="500px"}
+knitr::include_graphics("img/langs-spoken-1.png")
+```
+
+---
+
+```{r, fig.cap="Educational attainment in PLAY counties", out.height="500px"}
+knitr::include_graphics("img/ed-attain-1.png")
+```
+
+---
+
+```{r, fig.cap="Household income in PLAY counties", out.height="500px"}
+knitr::include_graphics("img/income-1.png")
+```
+
 
 ## Survey questions
 
