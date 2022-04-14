@@ -166,6 +166,12 @@ knitr::include_graphics("img/race-fig-1.png")
 
 ---
 
+```{r, fig.cap="Ethnicity reported in PLAY counties", out.height="500px"}
+knitr::include_graphics("img/ethnicity-fig-1.png")
+```
+
+---
+
 ```{r, fig.cap="Languages spoken in PLAY counties", out.height="500px"}
 knitr::include_graphics("img/langs-spoken-1.png")
 ```
@@ -192,17 +198,18 @@ knitr::include_graphics("img/income-1.png")
 
 ---
 
-- ECBQ (Rothbart)
+- Early Childhood Behavior Questionnaire (Rothbart)
 - Media use
 - Pets
 - Household structure
-- Typical day?
+- Typical day
 
 ---
 
-```{r}
+```{r, fig.cap="https://kobotoolbox.org"}
 knitr::include_graphics("img/kobotoolbox.png")
 ```
+
 
 ## Behaviors to code
 
@@ -218,7 +225,7 @@ knitr::include_graphics("img/kobotoolbox.png")
 - Versioning data, protocol, coding scheme
 - Add-on, follow-up studies
     - New data
-    - Augmented, new annotations
+    - Augmented, new video annotations
 - COVID-19
     
 # A preview
@@ -401,6 +408,44 @@ xtabs(formula = ~ typical_nightmorning + age_group, data = typical_data) %>%
 
 ```{r}
 databraryapi::logout_db()
+```
+
+# Take homes
+
+---
+
+```{r, fig.cap="[[@Szucs2017-fc]](http://doi.org/10.1371/journal.pbio.2000797)"}
+knitr::include_graphics("http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.2000797.g003&type=large")
+```
+
+> "*Assuming a realistic range of prior probabilities for null hypotheses, false report probability is likely to exceed 50% for the whole literature.*"
+
+---
+
+```{r, out.width="750px", fig.cap="[[@Marek2022-vu]](http://dx.doi.org/10.1038/s41586-022-04492-9)"}
+knitr::include_graphics("img/marek-et-al-2022.png")
+```
+
+---
+
+- Big data developmental science of *natural behavior* is possible \& *necessary*
+- Cognition and emotion *in context*
+- Ambition and vision drive innovation
+- Future-orientation (what will future researchers want to know) challenging, but invigorating
+- What do we want our science to be about?
+
+---
+
+```{r, out.width="850px"}
+knitr::include_graphics("http://cdn2.hubspot.net/hub/134568/file-1208368053-jpg/6-blind-men-hans.jpg")
+```
+
+<!-- We don't have to be like the blind men and the elephant -->
+
+---
+
+```{r, out.width="450px"}
+knitr::include_graphics("http://static.neatorama.com/images/2012-09/girl-hugging-elephant.jpg")
 ```
 
 ---

@@ -91,6 +91,39 @@ race_df %>%
   geom_bar(position = "fill", stat = "identity") +
   theme_classic() +
   theme(axis.text.x = element_blank()) +
+  theme(axis.line.x = element_blank()) +
+  theme(axis.ticks.x = element_blank()) +
+  theme(legend.title = element_blank()) +
+  xlab("") +
+  ylab("p(pop)")
+```
+
+## Hispanic/non-Hispanic
+
+```{r}
+hisp <- read_csv('csv/collection-by-county-hispanic.csv')
+
+hisp_df <- hisp %>%
+  dplyr::select(., -c('GEOID', 'variable', 'moe', 'Institution', 'SiteCode')) %>%
+  tidyr::pivot_wider(., id_cols = NAME, names_from = variable_name, values_from = estimate, values_fn = mean) %>%
+  dplyr::mutate(., p_hisp = Hisp/(Non_hisp + Hisp)) %>%
+  dplyr::arrange(., p_hisp) %>%
+  dplyr::mutate(., hisp_ranking = 1:length(Hisp)) %>%
+  # dplyr::select(., -p_hisp) %>%
+  tidyr::pivot_longer(., cols = c("Non_hisp", "Hisp"), names_to = "ethnicity", values_to = "pop")
+```
+
+```{r ethnicity-fig}
+hisp_df %>%
+  ggplot(.) +
+  aes(fill = ethnicity,
+      x = hisp_ranking,
+      y = pop) +
+  geom_bar(position = "fill", stat = "identity") +
+  #geom_col() +
+  theme_classic() +
+  theme(axis.text.x = element_blank()) +
+  theme(axis.line.x = element_blank()) +
   theme(axis.ticks.x = element_blank()) +
   theme(legend.title = element_blank()) +
   xlab("") +
@@ -103,22 +136,16 @@ race_df %>%
 spanish <- readr::read_csv("csv/collection-by-county-spanish.csv")
 
 spanish_df <- spanish %>%
-  dplyr::rename(.,
-                county = NAME,
-                lang_spoken = pop,
-                p_speakers = n) %>%
   tidyr::pivot_wider(.,
-                     id_cols = c('county', 'p_speakers'),
-                     names_from = lang_spoken,
-                     values_from = p_speakers,
+                     id_cols = NAME,
+                     names_from = pop,
+                     values_from = n,
                      values_fn = mean) %>%
-  dplyr::select(., -c('English_only', 'Spanish', 'Other')) %>%
-  dplyr::rename(., English_only = p_English_only,
-                Spanish = p_Spanish,
-                Other = p_Other) %>%
-  dplyr::arrange(., Spanish) %>%
-  dplyr::mutate(., span_ranking = 1:length(Spanish)) %>%
-  tidyr::pivot_longer(., cols = -c('county', 'span_ranking'), names_to = "language", values_to = "p_pop")
+  dplyr::arrange(., p_Spanish) %>%
+  dplyr::mutate(., span_ranking = 1:length(p_Spanish)) %>%
+  dplyr::select(., -c('p_English_only', 'p_Spanish', 'p_Other')) %>%
+  tidyr::pivot_longer(., cols = c('English_only', 'Spanish', 'Other'), names_to = 'language', values_to = 'pop') %>%
+  dplyr::filter(., !is.na(pop))
 ```
 
 ```{r langs-spoken}
@@ -126,11 +153,12 @@ spanish_df %>%
   ggplot(.) +
   aes(fill = language,
       x = span_ranking,
-      y = p_pop) +
-  # geom_bar(position = "fill", stat = "identity") +
-  geom_col() +
+      y = pop) +
+  geom_bar(position = "fill", stat = "identity") +
+  #geom_col() +
   theme_classic() +
   theme(axis.text.x = element_blank()) +
+  theme(axis.line.x = element_blank()) +
   theme(axis.ticks.x = element_blank()) +
   theme(legend.title = element_blank()) +
   xlab("") +
@@ -143,24 +171,16 @@ spanish_df %>%
 ed <- readr::read_csv("csv/collection-by-county-education.csv")
 
 ed_df <- ed %>%
-  dplyr::rename(., county = NAME) %>%
-  dplyr::mutate(
-    .,
-    lt_hs = lt_hs / total,
-    hs_grad = hs_grad / total,
-    some_coll = some_coll / total,
-    ba = ba / total,
-    ba_plus = ba_plus / total
-  ) %>%
-  dplyr::arrange(., lt_hs) %>%
+  dplyr::mutate(., p_lt_hs = lt_hs/total) %>%
+  dplyr::arrange(., p_lt_hs) %>%
   dplyr::mutate(., lt_hs_index = 1:length(lt_hs)) %>%
+  dplyr::select(., -c('p_lt_hs', 'total')) %>%
   tidyr::pivot_longer(
     .,
     cols = c('lt_hs', 'hs_grad', 'some_coll', 'ba', 'ba_plus'),
     names_to = "education",
-    values_to = "p_pop"
+    values_to = "pop"
   ) %>%
-  dplyr::select(.,-c('total')) %>%
   dplyr::mutate(., education = factor(
     education,
     levels = c('lt_hs', 'hs_grad', 'some_coll', 'ba', 'ba_plus')
@@ -172,10 +192,11 @@ ed_df %>%
   ggplot(.) +
   aes(fill = education,
       x = lt_hs_index,
-      y = p_pop) +
-  geom_col() +
+      y = pop) +
+  geom_bar(position = "fill", stat = "identity") +
   theme_classic() +
   theme(axis.text.x = element_blank()) +
+  theme(axis.line.x = element_blank()) +
   theme(axis.ticks.x = element_blank()) +
   theme(legend.title = element_blank()) +
   xlab("") +
@@ -188,24 +209,17 @@ ed_df %>%
 income <- readr::read_csv("csv/collection-by-county-income.csv")
 
 income_df <- income %>%
-  dplyr::rename(., county = NAME) %>%
-  dplyr::mutate(
-    .,
-    lt_25K = lt_25K / total,
-    b25_50K = b25_50K / total,
-    b50_100K = b50_100K / total,
-    gt_100K = gt_100K / total
-  ) %>%
-  dplyr::arrange(., lt_25K) %>%
+  dplyr::mutate(., p_lt_25K = lt_25K/total) %>%
+  dplyr::arrange(., p_lt_25K) %>%
   dplyr::mutate(., lt_25K_index = 1:length(lt_25K)) %>%
+  dplyr::select(., -c('p_lt_25K', 'total')) %>%
   tidyr::pivot_longer(
     .,
     cols = c('lt_25K', 'b25_50K', 'b50_100K', 'gt_100K'),
     names_to = "income",
-    values_to = "p_pop"
+    values_to = "pop"
   ) %>%
-  dplyr::select(., -c('total')) %>%
-  dplyr::mutate(., education = ordered(income, levels = c(
+  dplyr::mutate(., income = factor(income, levels = c(
     'lt_25K', 'b25_50K', 'b50_100K', 'gt_100K'
   )))
 ```
@@ -215,10 +229,11 @@ income_df %>%
   ggplot(.) +
   aes(fill = income,
       x = lt_25K_index,
-      y = p_pop) +
-  geom_col() +
+      y = pop) +
+  geom_bar(position = "fill", stat = "identity") +
   theme_classic() +
   theme(axis.text.x = element_blank()) +
+  theme(axis.line.x = element_blank()) +
   theme(axis.ticks.x = element_blank()) +
   theme(legend.title = element_blank()) +
   xlab("") +
