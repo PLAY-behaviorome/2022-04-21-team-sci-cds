@@ -335,6 +335,12 @@ xtabs(formula = ~ child_race + child_ethnicity, data = play_data) %>%
   kableExtra::kable_classic(.)
 ```
 
+## Virtues of standardization within a repository
+
+- Databrary has demographic data from $n=9,342$ [participant sessions](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Overall).
+- [Race](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Race) (NIH categories), [Ethnicity](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Ethnicity) (NIH categories), [Gender](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Gender)
+- Building foundation for future searching and filtering by participant characteristics
+
 ## Locomotor milestones
 
 ```{r, echo=FALSE}

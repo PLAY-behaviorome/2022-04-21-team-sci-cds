@@ -7,5 +7,5 @@ knitr::include_graphics("img/PLAY-logo.png")
 <div class="centered">
 <https://play-project.org></br>
 <https://anhourinthelife.org></br>
-<https://github.com/PLAY-behaviorome></br>
+<https://PLAY-behaviorome.github.io/2022-04-21-team-sci-cds></br>
 </div>
