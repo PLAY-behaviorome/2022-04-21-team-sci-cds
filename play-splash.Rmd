@@ -1,0 +1,11 @@
+---
+
+```{r}
+knitr::include_graphics("img/PLAY-logo.png")
+```
+
+<div class="centered">
+<https://play-project.org></br>
+<https://anhourinthelife.org></br>
+<https://github.com/PLAY-behaviorome></br>
+</div>
