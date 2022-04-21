@@ -10,3 +10,5 @@ To re-render the talks, clone the repository. Run `rmarkdown::render("play-overv
 **Note**: Some features of the slides require authorized access from Databrary. If you are an authorized Databrary user, run `source("R/make_talks.R")`, and then run `make_talks("youremail@institution.com")`, substituting your Databrary account (email) for 'youremail@institution.com'.
 
 
+
+
