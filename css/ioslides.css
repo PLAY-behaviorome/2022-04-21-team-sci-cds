@@ -1,13 +1,19 @@
 h2 {
   font-size: 50px;
 }
+
 h3 {
   font-size: 44px;
 }
+
 p, li, td {
   font-size: 38px;
 }
 
 .small {
   font-size: 24px;
+}
+
+code {
+  font-size: 30px;
 }

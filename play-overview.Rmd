@@ -1,5 +1,5 @@
 ---
-title: "Play & Learning Across a Year (PLAY)"
+title: "Let's PLAY"
 author: "Rick Gilmore & Kasey Soska"
 subtitle: "CDS 2022 BTS workshop"
 date: "`r Sys.time()`"
@@ -12,6 +12,7 @@ output:
     widescreen: true
     incremental: false
     transition: default
+    self_contained: false
 params:
   db_login: "email@university.com"
 ---
@@ -27,7 +28,7 @@ library(tidyverse)
 
 ## Acknowledgements
 
-- Support from NICHD, NIH OD, NIMH, NIDA, OBSSR, NSF
+- Support from NICHD, NIH/OD, NIMH, \& NIDA via R01HD094830-01; NSF via 2032713; the LEGO Foundation; \& the Alfred P. Sloan Foundation
 - Karen Adolph, Cathie Tamis-LeMonda, Orit Hertzberg, Tiger Teng
 
 ## Overview
@@ -35,24 +36,26 @@ library(tidyverse)
 - What is PLAY
 - Why PLAY
 - Challenges..met and meeting
-- A preview
+- A sneak peak
 - Let play be our work
 
 # What is PLAY
 
 ---
 
-```{r}
+```{r, fig.cap="[72 investigators across 50 institutions](https://www.play-project.org/people.html)"}
 knitr::include_graphics("img/PLAY-logo.png")
 ```
 
 ---
 
+<div class="centered">
 <video width="80%" controls>
   <source src="https://www.anhourinthelife.org/img/PLAY-parents-noaudio.mp4" type="video/mp4">
 </video>
 
 <https://anhourinthelife.org>
+</div>
 
 ---
 
@@ -60,27 +63,35 @@ knitr::include_graphics("img/PLAY-logo.png")
 - 1 hr natural behavior (video)
 - 5 min structured play (video)
 - House tour (video)
-- Parent-report questionnaires
+- Parent-report questionnaires (video \& electronic form)
 - Ambient sound levels
 
 ---
 
-- Foundational video coding passes
-    - Speech \& language
-    - Emotional expression
+- Rigorous quality assurance (QA) control
+- Utterance-level [transcription](https://www.play-project.org/coding.html#Transcription) (child \& mother)
+- Foundational video coding passes covering multiple psychological domains
+    - Language and communication
+    - Locomotion and physical activity
     - Object interaction
-    - Locomotion \& physical activity
-    
+    - Emotional expression
+- Using [Datavyu](https://datavyu.org)
+
 ---
 
-- Common, openly shared dataset
+- Common, openly shared dataset on [Databrary](https://databrary.org)
 - Dataset as deliverable
-- Rigorous QA control
 - Investigator-specific questions...
 - Catalyze/expand capacity to exploit video
 - Pioneer \& polish tools for big data open developmental science
 
 # Why PLAY
+
+## Whys
+
+- Conceptual
+- Analytical
+- Methodological
 
 ## Natural behavior
 
@@ -89,12 +100,21 @@ knitr::include_graphics("img/PLAY-logo.png")
 [[@Adolph_KE_Gilmore_RO_Kennedy_JL2017-va]](https://www.apa.org/science/about/psa/2017/10/video-data)
 - Can be analyzed systematically by human observers
 - Environments *outside the lab* most representative of children's experiences
-- Tackling the 'generalizability crisis' head-on [[@Yarkoni2020-se]](http://dx.doi.org/10.1017/S0140525X20001685)
+- Tackling the 'generalizability crisis' [[@Yarkoni2020-se]](http://dx.doi.org/10.1017/S0140525X20001685), head-on [[@West2022-um]](http://dx.doi.org/10.1017/S0140525X21000522).
 
-## Big data developmental science
+## Behavior is multi-dimensional, yet...
 
-- [[@gilmore_big_2016]](https://doi.org/10.1002/wcs.1379)
-- No comparable corpus
+```{r, out.width="850px"}
+knitr::include_graphics("http://cdn2.hubspot.net/hub/134568/file-1208368053-jpg/6-blind-men-hans.jpg")
+```
+
+<!-- We don't have to be like the blind men and the elephant -->
+
+---
+
+```{r, out.width="450px"}
+knitr::include_graphics("http://static.neatorama.com/images/2012-09/girl-hugging-elephant.jpg")
+```
 
 ---
 
@@ -114,7 +134,7 @@ knitr::include_graphics("img/marek-et-al-2022.png")
 
 - Presents opportunities [[@Gennetian2020-ji]](https://doi.org/10.1111/cdep.12356) 
 - Poses surmountable challenges [[@Gilmore2020-sl]](https://doi.org/10.1111/cdep.12360)
-- "*...is essential for for improving the health and well-being of humanity...*"
+- "...will be more rigorous, robust, and impactful" [[@Gilmore2021-zr]](https://doi.org/10.1002/icd.2254)
 
 ---
 
@@ -124,42 +144,42 @@ knitr::include_graphics("img/SRCD-policy.png")
 
 ---
 
->"*The advancement of detailed and diverse knowledge about the development of the world’s children is essential for improving the health and well-being of humanity. The Society for Research in Child Development (SRCD) regards scientific integrity, transparency, and openness as essential for the conduct of research and its application to practice and policy. These values apply to research conduct, to the teaching of scientific methods, and to the translation of science into practice and policy.*"
+> "*The advancement of detailed and diverse knowledge about the development of the world’s children is essential for improving the health and well-being of humanity. The Society for Research in Child Development (SRCD) regards scientific integrity, transparency, and openness as essential for the conduct of research and its application to practice and policy. These values apply to research conduct, to the teaching of scientific methods, and to the translation of science into practice and policy.*"
 
 <div class="center">
 <https://www.srcd.org/policy-scientific-integrity-transparency-and-openness>
 <div>
 
-## Open developmental science
-
-- "*will be more rigorous, robust, and impactful*" [[@Gilmore2021-zr]](https://doi.org/10.1002/icd.2254) 
-
 ## PLAY: Science in the open
     
-- Planning workshop: https://nyu.databrary.org/volume/254
-- Web site (https://play-project.org), https://github.com/PLAY-behaviorome/PLAY-project.org
+- Planning [workshop](https://nyu.databrary.org/volume/254)
+- Web site (<https://play-project.org>) \& [protocol videos](https://databrary.org/volume/876)
 - Data management \& curation [[@Soska2021-mh]](http://dx.doi.org/10.7191/jeslib.2021.1208)
+- [GitHub repo](https://github.com/PLAY-behaviorome/PLAY-project.org)
 - Planning for future reuse
 
-## Growing Databrary
+## Growing [Databrary](https://databrary.org)
 
-- Only restricted access data library specialized for storing \& sharing video/audio for research purposes
-    - Protect identifiable or sensitive data
-    - Openly (but not publicly) share identifiable or sensitive data
-- Video as data [[@Adolph_KE_Gilmore_RO_Kennedy_JL2017-va]](https://www.apa.org/science/about/psa/2017/10/video-data), demonstration, & documentation [[@GilmoreAdolph2017]](https://doi.org/10.1038/s41562-017-0128) 
+- Restricted access data library 
+- Specialized for storing \& sharing video/audio + related data
+- Protects identifiable or sensitive data
+- Permits onen (but not necessarily public) 
+- Emphasize participant permission-to-share
+    
+---
+
+- Video as data [[@Adolph_KE_Gilmore_RO_Kennedy_JL2017-va]](https://www.apa.org/science/about/psa/2017/10/video-data), [demonstration](https://databrary.org/support/irb/examples.html), & documentation [[@GilmoreAdolph2017]](https://doi.org/10.1038/s41562-017-0128) 
 - Developed by and especially for developmental scientists
 
 ---
 
 ```{r, out.width="700px", fig.cap="https://gilmore-lab.github.io/databrary-analytics/weekly/databrary_weekly_report.html"}
-knitr::include_graphics("img/databrary-auth.png")
+knitr::include_graphics("img/databary-weekly-2022-04-18.png")
 ```
 
-## Video, audio, + other types {.smaller}
+## Video, audio, + [other types](https://nyu.databrary.org/asset/formats) {.smaller}
 
-- https://nyu.databrary.org/asset/formats
-
-```{r, fig.cap="https://gilmore-lab.github.io/databrary-analytics/volumes-with-videos-annotations/assets-stats.html"}
+```{r, out.width="700px", fig.cap="https://gilmore-lab.github.io/databrary-analytics/volumes-with-videos-annotations/assets-stats.html"}
 knitr::include_graphics("img/databrary-shared-files.png")
 ```
 
@@ -167,23 +187,23 @@ knitr::include_graphics("img/databrary-shared-files.png")
 
 ## Sampling
 
-- Who to include
-- Age range(s)
-- What language backgrounds
-- Where to sample
-- What to vary, what to keep constant...
+- Who to include?
+- Age range(s)?
+- What language backgrounds?
+- Where to sample?
+- What to vary, what to keep constant?
 
 ---
 
 - Is ['an hour in the life'](https://www.anhourinthelife.org/) representative?
-- What parent-report survey questions \& how to collect
-- What behaviors to code from video
+- What parent-report survey questions \& how to collect?
+- What behaviors to code from video?
 
 ---
 
 - 12-mo-olds, 18-mo-olds, & 24-mo-olds
 - Only English and Spanish-speaking households
-- Mom and child
+- Child and mother
 - 31 sites
 
 ---
@@ -197,7 +217,7 @@ knitr::include_graphics("img/PLAY-sites.png")
 - Informed by Census demographics
   - https://github.com/PLAY-behaviorome/site-demographics
   - [`tidycensus`](https://walker-data.com/tidycensus/) R package
-  - `collection-site-demographics.Rmd`
+  - [`collection-site-demographics.Rmd`](collection-site-demographics.Rmd)
 
 ---
 
@@ -232,16 +252,23 @@ knitr::include_graphics("img/income-1.png")
 ## Survey questions
 
 - Health
-- Patient Health Questionnaire (PHQ-4)
+    - Child health
+    - Mother prenatal health \& behavior
+    - Mother mental health (PHQ-4)
+- Early Childhood Behavior Questionnaire (Rothbart)
+   
+---
+
 - Locomotor milestones
 - MacArthur-Bates Communicative Development Inventory (MB-CDI)
+    - New dual-language learning (DLL) inventory [Tamis-Lemonda, et al.](https://databrary.org/volume/1168)
 
 ---
 
-- Early Childhood Behavior Questionnaire (Rothbart)
 - Media use
 - Pets
 - Household structure
+- Division of labor
 - Typical day
 
 ---
@@ -252,16 +279,27 @@ knitr::include_graphics("img/kobotoolbox.png")
 
 ## Behaviors to code
 
-<https://nyu.databrary.org/slot/27087/0,372193/asset/119877/download?inline=true>
+- Foundational video coding passes
+    - [Communication](https://www.play-project.org/coding.html#Communication_coding) \& [gesture](https://www.play-project.org/coding.html#Gesture_coding)
+    - [Emotion](https://www.play-project.org/coding.html#Emotion_coding)
+    - [Object interaction](https://www.play-project.org/coding.html#Object_Interaction_coding)
+    - [Locomotion](https://www.play-project.org/coding.html#Locomotion_coding)
+- Multivariate, interlocking timelines of infant and mother behavior: <smaller> <https://nyu.databrary.org/slot/27087/0,372193/asset/119877/download?inline=true></smaller>
 
 ## Other challenges
+
+- IRB
+    - Distributed collection \& coding
+    - Common sharing permission language based on [Databrary template](https://databrary.org/support/irb.html)
+    - Common data use agreement: [Databrary Access Agreement](https://databrary.org/about/agreement.html)
+    
+---
 
 - Findable, usable beyond launch group
 - Limitations of Databrary 1.0
     - Data in-process vs. data shared
-    - Virtual volumes
+    - Original data in original volume, but also in aggregate PLAY volume
 - Versioning data, protocol, coding schemes
-- IRB
 
 ---
 
@@ -270,7 +308,7 @@ knitr::include_graphics("img/kobotoolbox.png")
     - Augmented, new video annotations
 - COVID-19
     
-# A preview
+# A sneak peak
 
 ## Release levels
 
@@ -281,16 +319,37 @@ knitr::include_graphics("img/databrary-release-levels.png")
 ## Video data
 
 - 1-hour natural play: <https://nyu.databrary.org/slot/18825/78777000,82445800/asset/85849/download?inline=true>
-- House walk-through: <https://nyu.databrary.org/slot/18825/69908000,70431136/asset/85853/download?inline=true>
 - Structured play: <https://nyu.databrary.org/slot/18825/85767000,86228590/asset/85865/download?inline=true>
+- Parent-report questionnaires: <https://nyu.databrary.org/slot/18825/82179000,85191864/asset/85867/download?inline=true>
+
+--- 
+
+- House walk-through: <https://nyu.databrary.org/slot/18825/69908000,70431136/asset/85853/download?inline=true>
 
 ---
 
-- Parent-report questionnaires: <https://nyu.databrary.org/slot/18825/82179000,85191864/asset/85867/download?inline=true>
+<div class="centered">
+<video width="80%" controls>
+  <source src="vid/LEGO_housemap_big10x.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</div>
+
+---
+
+```{r, fig.cap="[[@Herzberg2022-js]](http://dx.doi.org/10.1111/cdev.13669)", out.width="700px"}
+knitr::include_graphics("img/LEGO-timelines-hertzberg-etal.png")
+```
+
+---
+
+```{r, fig.cap="[[@Herzberg2022-js]](http://dx.doi.org/10.1111/cdev.13669)", out.width="700px"}
+knitr::include_graphics("img/LEGO-timelines-hertzberg-etal-3.png")
+```
 
 ## Survey data
 
-- Make use of `databraryapi` R package that interacts with Databrary API
+- Exploit `databraryapi` R package that interacts with Databrary API
     - [[@Gilmore_undated-mj]](https://github.com/PLAY-behaviorome/databraryapi)
 - Reproducible data cleaning, visualization, and analysis scripts from the get-go
 
@@ -337,9 +396,9 @@ xtabs(formula = ~ child_race + child_ethnicity, data = play_data) %>%
 
 ## Virtues of standardization within a repository
 
-- Databrary has demographic data from $n=9,342$ [participant sessions](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Overall).
+- Databrary has demographic data from $n=9,342$ [participant sessions](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Overall)
 - [Race](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Race) (NIH categories), [Ethnicity](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Ethnicity) (NIH categories), [Gender](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Gender)
-- Building foundation for future searching and filtering by participant characteristics
+- Foundation for future searching and filtering by participant characteristics
 
 ## Locomotor milestones
 
@@ -389,65 +448,81 @@ ggExtra::ggMarginal(
 crawl_solid_p <- loco_feeding_data %>%
   ggplot(.) +
   aes(
-    x = crawl_mos,
-    y = solid_food_mos,
-    color = child_sex
+    x = solid_food_mos,
+    color = child_sex,
+    fill = child_sex
   ) +
-  geom_point() +
-  geom_smooth(method = "lm", aes(group = 1)) +
+  geom_histogram() +
   theme(legend.position = "bottom")
 
-ggExtra::ggMarginal(
-  crawl_solid_p,
-  loco_feeding_data,
-  crawl_mos,
-  solid_food_mos,
-  type = "density",
-  margins = "both",
-  groupColour = TRUE,
-  groupFill = TRUE
-)
+crawl_solid_p
 ```
 
-## Typical behavior?
+---
 
-````
-xtabs(formula = ~ typical_behavior + age_group, data = typical_data) %>%
-  knitr::kable(., format = 'html') %>%
-  kableExtra::kable_classic(.)
-````
+```{r}
+phq4_levels <- c('notatall', 'severaldays', 'morethanhalf', 'nearly')
+phq4_labels <- c('not_at_all', 'several_days', 'more_than_half', 'nearly_every')
 
-```{r, echo=FALSE}
-typical_data <- play_data %>%
-  dplyr::select(., child_sex,
-                age_group,
-                typical_day.typical_behavior,
-                typical_day.typical_activities,
-                typical_day.typical_nightmorning,
-                typical_day.typical_otherthanme) %>%
-  dplyr::rename(., 
-                typical_behavior = typical_day.typical_behavior,
-                typical_activities = typical_day.typical_activities,
-                typical_nightmorning = typical_day.typical_nightmorning,
-                typical_otherthanme = typical_day.typical_otherthanme)
-
-xtabs(formula = ~ typical_behavior + age_group, data = typical_data) %>%
-  knitr::kable(., format = 'html') %>%
-  kableExtra::kable_classic(.)
+phq4 <- play_data %>%
+  dplyr::select(
+    .,
+    age_group,
+    child_sex,
+    health.phq4.phq4_nervous,
+    health.phq4.phq4_worrying,
+    health.phq4.phq4_littleinterest,
+    health.phq4.phq4_down
+  ) %>%
+  dplyr::rename(
+    .,
+    nervous = health.phq4.phq4_nervous,
+    worrying = health.phq4.phq4_worrying,
+    little_interest = health.phq4.phq4_littleinterest,
+    down = health.phq4.phq4_down
+  ) %>%
+  dplyr::mutate(
+    .,
+    nervous = factor(
+      nervous,
+      levels = phq4_levels,
+      labels = phq4_labels,
+      ordered = TRUE
+    ),
+    worrying = factor(
+      worrying,
+      levels = phq4_levels,
+      labels = phq4_labels,
+      ordered = TRUE
+    ),
+    little_interest = factor(
+      little_interest,
+      levels = phq4_levels,
+      labels = phq4_labels,
+      ordered = TRUE
+    ),
+    down = factor(
+      down,
+      levels = phq4_levels,
+      labels = phq4_labels,
+      ordered = TRUE
+    )
+  )
 ```
 
-## Typical night/morning?
+## Patient Health Questionnaire (PHQ-4)
 
-````
-xtabs(formula = ~ typical_nightmorning + age_group, data = typical_data) %>%
-  knitr::kable(., format = 'html') %>%
-  kableExtra::kable_classic(.)
-````
+- Depression screen
 
-```{r, echo=FALSE, message=FALSE}
-xtabs(formula = ~ typical_nightmorning + age_group, data = typical_data) %>%
-  knitr::kable(., format = 'html') %>%
-  kableExtra::kable_classic(.)
+> "*Over the last two weeks, how often have you been bothered by the following problems?*"
+
+---
+
+> "*Feeling nervous, anxious, or on edge*"
+
+```{r}
+l_nervous <- likert::likert(as.data.frame(phq4$nervous), )
+plot(l_nervous, )
 ```
 
 ```{r}
@@ -466,16 +541,8 @@ databraryapi::logout_db()
 
 ---
 
-```{r, out.width="850px"}
-knitr::include_graphics("http://cdn2.hubspot.net/hub/134568/file-1208368053-jpg/6-blind-men-hans.jpg")
-```
-
-<!-- We don't have to be like the blind men and the elephant -->
-
----
-
-```{r, out.width="450px"}
-knitr::include_graphics("http://static.neatorama.com/images/2012-09/girl-hugging-elephant.jpg")
+```{r, fig.cap="[[@Mischel2011-br]](https://www.psychologicalscience.org/observer/becoming-a-cumulative-science)"}
+knitr::include_graphics("img/mischel-2009-becoming-cumulative.png")
 ```
 
 ## Come PLAY with us!
@@ -484,7 +551,7 @@ knitr::include_graphics("http://static.neatorama.com/images/2012-09/girl-hugging
 - Write grants to use the data
 - Help test, polish the `databraryapi` R package and complete the Python package
 - Help shape, test Databrary 2.0
-- Make developmental science a leader in big data reseearch on behavior
+- Make developmental science a leader in big data research on children's behavior, thinking, and feeling 
 
 ```{r, child="play-splash.Rmd"}
 ```

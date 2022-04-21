@@ -25,7 +25,7 @@ library(tidyverse)
 
 ## Acknowledgements
 
-- Support from NICHD, NIH OD, NIMH, NIDA, OBSSR, NSF
+- Support from NICHD, NIH/OD, NIMH, \& NIDA via R01HD094830-01; NSF via 2032713; the LEGO Foundation; \& the Alfred P. Sloan Foundation
 - Karen Adolph, Cathie Tamis-LeMonda, Orit Hertzberg, Tiger Teng
 
 ## Overview
@@ -55,7 +55,7 @@ knitr::include_graphics("img/hyperactive.png")
 ## What is it?
 
 - Embed data curation within data collection workflow
-- Conduct rigorous quality assurance (QA) during collection
+- Rigorous \& thorough quality assurance (QA) during collection
 - Curate data with specific sharing target in mind
 
 ## Workflow {.smaller}
@@ -86,13 +86,15 @@ knitr::include_graphics("img/overview-coding.png")
 ---
 
 ```{r, fig.cap="[[@Soska2021-mh]](http://dx.doi.org/10.7191/jeslib.2021.1208)"}
-knitr::include_graphics("img/soska-etal-figure7.png")
+knitr::include_graphics("img/Figure7-DataChecks.jpg")
 ```
 
 ## Data export & cleaning (surveys)
 
 - <https://github.com/PLAY-behaviorome/KoBoToolbox>
 - Series of enumerated R Markdown documents
+    - Reproducible
+    - Documents gathering, cleaning steps
 
 ---
 
@@ -113,24 +115,63 @@ knitr::include_graphics("img/soska-etal-figure1.png")
 
 ## In-process
 
-- Moving protocol to `bookdown`
-- <https://PLAY-behaviorome.github.io/protocol>
+- Full protocol on <https://play-project.org>
+- Considering migration of protocol to [`bookdown`](https://PLAY-behaviorome.github.io/protocol)
+- Individual-level files
+    - Including CHAT export of transcripts
+- Clean, aggregate MB-CDI data
+- From data dictionaries to open schemata
 
 # Lessons learned
-
-## Plan your work; work your plan
-
-- You have to curate data for yourself
-- Clear to you == (often) clear to others
-- Automate as much as possible
-    - Script, use APIs
-- Expect to iterate
-- Don't make the perfect the enemy of the good
 
 ---
 
 ```{r}
-knitr::include_graphics("img/PLAY-logo.png")
+knitr::include_graphics("https://www.rd.com/wp-content/uploads/2017/02/01-How-Bad-is-it-to-Share-a-Toothbrush-159311405-ABykov-760x506.jpg")
+```
+
+---
+
+> "*...psychologists tend to treat other peoples’ theories like toothbrushes; no self-respecting individual wants to use anyone else’s.*"
+
+<small>[[@Mischel2011-br]](https://www.psychologicalscience.org/observer/becoming-a-cumulative-science)</small>
+
+---
+
+> "*The toothbrush culture undermines the building of a genuinely cumulative science, encouraging more parallel play and solo game playing, rather than building on each other’s directly relevant best work.*"
+
+<small>[[@Mischel2011-br]](https://www.psychologicalscience.org/observer/becoming-a-cumulative-science)</small>
+
+---
+
+> "...psychologists tend to treat other peoples’ ~~theories~~<span class="blue">data, data management practices, tasks, displays...</span>like toothbrushes..."
+
+*Cheeky open and reproducible developmental science advocates who want to create a more cumulative science*
+
+## Plan your work; work your plan
+
+- You have to curate data for yourself, so...
+- Clear to you == (often) clear to others
+- Curate with specific target in mind
+- Automate as much as possible
+    - Script, use APIs
+    - Exploit the web
+
+---
+
+- Test workflow at every step/look at data
+- Expect to iterate
+- Don't make the perfect the enemy of the good
+- *Meaningful* data management plans increasingly [required by funders](https://psu-psychology.github.io/2021-10-01-odds-data-mgmt/)
+- Make data a <span class="blue">first class product</span>
+
+## Come PLAY with us!
+
+- Share best practices
+- Let's solve as-yet-unsolved problems...together
+- No reinventing wheels
+
+```{r, child="play-splash.Rmd"}
 ```
 
 ```{r, child="splash.Rmd"}

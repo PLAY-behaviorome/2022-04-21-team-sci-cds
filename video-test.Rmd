@@ -1,0 +1,26 @@
+---
+title: "video-test"
+author: "Rick Gilmore"
+date: "4/20/2022"
+output: 
+  html_document:
+    self_contained: false
+---
+
+## Video 1
+
+<div class="centered">
+<video width="80%" controls>
+  <source src="https://www.anhourinthelife.org/img/PLAY-parents-noaudio.mp4" type="video/mp4">
+</video>
+
+<https://anhourinthelife.org>
+</div>
+
+## Video 2
+
+<div class="centered">
+<video width="80%" controls>
+  <source src="vid/LEGO_housemap_big10x.mp4" type="video/mp4">
+</video>
+</div>
