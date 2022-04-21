@@ -54,7 +54,7 @@ knitr::include_graphics("img/hyperactive.png")
 
 ## What is it?
 
-- Embed data curation within data collection workflow
+- Embed data *curation* within data *collection* workflow
 - Rigorous \& thorough quality assurance (QA) during collection
 - Curate data with specific sharing target in mind
 
@@ -148,14 +148,24 @@ knitr::include_graphics("https://www.rd.com/wp-content/uploads/2017/02/01-How-Ba
 
 *Cheeky open and reproducible developmental science advocates who want to create a more cumulative science*
 
+## We don't talk about (you know)...
+
+```{r, fig.cap="[[@DisneyMusicVEVO2021-mv]](https://www.youtube.com/watch?v=bvWRMAU6V-c)"}
+knitr::include_graphics("img/bruno.png")
+```
+
 ## Plan your work; work your plan
 
 - You have to curate data for yourself, so...
 - Clear to you == (often) clear to others
 - Curate with specific target in mind
+
+---
+
 - Automate as much as possible
     - Script, use APIs
     - Exploit the web
+    - Consistency is the ~~hobgoblin of little minds~~ key to successful automation!
 
 ---
 
@@ -168,6 +178,7 @@ knitr::include_graphics("https://www.rd.com/wp-content/uploads/2017/02/01-How-Ba
 ## Come PLAY with us!
 
 - Share best practices
+- Talk about "you know"
 - Let's solve as-yet-unsolved problems...together
 - No reinventing wheels
 

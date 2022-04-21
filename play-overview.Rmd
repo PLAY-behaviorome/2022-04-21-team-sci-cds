@@ -79,9 +79,9 @@ knitr::include_graphics("img/PLAY-logo.png")
 
 ---
 
-- Common, openly shared dataset on [Databrary](https://databrary.org)
-- Dataset as deliverable
-- Investigator-specific questions...
+- Common, openly shared dataset as deliverable
+- Shared on [Databrary](https://databrary.org)
+- Enable investigator-specific questions...
 - Catalyze/expand capacity to exploit video
 - Pioneer \& polish tools for big data open developmental science
 
@@ -98,7 +98,7 @@ knitr::include_graphics("img/PLAY-logo.png")
 - Rich, varied, interesting, \& important [[@Adolph2020-rj]](http://dx.doi.org/10.1111/infa.12336)
 - Can be captured with video
 [[@Adolph_KE_Gilmore_RO_Kennedy_JL2017-va]](https://www.apa.org/science/about/psa/2017/10/video-data)
-- Can be analyzed systematically by human observers
+- Can be analyzed systematically and reproducibly by human observers
 - Environments *outside the lab* most representative of children's experiences
 - Tackling the 'generalizability crisis' [[@Yarkoni2020-se]](http://dx.doi.org/10.1017/S0140525X20001685), head-on [[@West2022-um]](http://dx.doi.org/10.1017/S0140525X21000522).
 
@@ -156,15 +156,15 @@ knitr::include_graphics("img/SRCD-policy.png")
 - Web site (<https://play-project.org>) \& [protocol videos](https://databrary.org/volume/876)
 - Data management \& curation [[@Soska2021-mh]](http://dx.doi.org/10.7191/jeslib.2021.1208)
 - [GitHub repo](https://github.com/PLAY-behaviorome/PLAY-project.org)
-- Planning for future reuse
+- Beyond sharing: Planning for future reuse
 
 ## Growing [Databrary](https://databrary.org)
 
 - Restricted access data library 
 - Specialized for storing \& sharing video/audio + related data
 - Protects identifiable or sensitive data
-- Permits onen (but not necessarily public) 
-- Emphasize participant permission-to-share
+- Permits open (but not necessarily public) 
+- Requires explicit participant sharing permission
     
 ---
 
@@ -397,8 +397,13 @@ xtabs(formula = ~ child_race + child_ethnicity, data = play_data) %>%
 ## Virtues of standardization within a repository
 
 - Databrary has demographic data from $n=9,342$ [participant sessions](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Overall)
-- [Race](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Race) (NIH categories), [Ethnicity](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Ethnicity) (NIH categories), [Gender](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Gender)
-- Foundation for future searching and filtering by participant characteristics
+    - [Race](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Race) (NIH categories), [Ethnicity](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Ethnicity) (NIH categories), [Gender](https://gilmore-lab.github.io/databrary-analytics/participant-demographics/participant-demog-report.html#Gender)
+    - Foundation for future searching and filtering by participant characteristics
+    
+---
+
+- Databrary API returns time [segments of selected videos](https://gilmore-lab.github.io/2018-10-15-nyu/PLAY-LEGO-report.html#3_individual-specific_reports_from_play)
+    - Foundation for selection of tagged video segments for AI/ML
 
 ## Locomotor milestones
 
@@ -458,11 +463,13 @@ crawl_solid_p <- loco_feeding_data %>%
 crawl_solid_p
 ```
 
----
+## Patient Health Questionnaire (PHQ-4)
+
+- Depression screen
 
 ```{r}
 phq4_levels <- c('notatall', 'severaldays', 'morethanhalf', 'nearly')
-phq4_labels <- c('not_at_all', 'several_days', 'more_than_half', 'nearly_every')
+phq4_labels <- c('not_at_all', 'several_days', 'more_than_half', 'nearly_every_day')
 
 phq4 <- play_data %>%
   dplyr::select(
@@ -510,19 +517,63 @@ phq4 <- play_data %>%
   )
 ```
 
-## Patient Health Questionnaire (PHQ-4)
-
-- Depression screen
 
 > "*Over the last two weeks, how often have you been bothered by the following problems?*"
 
 ---
 
-> "*Feeling nervous, anxious, or on edge*"
+> "*...Feeling nervous, anxious, or on edge*"
 
 ```{r}
-l_nervous <- likert::likert(as.data.frame(phq4$nervous), )
-plot(l_nervous, )
+l_nervous <- likert::likert(as.data.frame(phq4$nervous))
+plot(l_nervous)
+```
+
+---
+
+> "*...Feeling down, depressed, or hopeless*"
+
+```{r}
+l_down <- likert::likert(as.data.frame(phq4$down))
+plot(l_down)
+```
+
+## Media use
+
+```{r}
+media_use_cols <- stringr::str_detect(names(play_data), 'mediause')
+media_use_col_index <- (1:length(names(play_data)))[media_use_cols]
+
+media_use <- play_data %>%
+  dplyr::select(., age_group, child_sex, all_of(media_use_col_index)) %>%
+  dplyr::rename(., have_tv =  mediause.home_technology.tv,
+                have_dvd = mediause.home_technology.dvd,
+                have_computer = mediause.home_technology.computer,
+                have_tablet = mediause.home_technology.ipad,
+                have_videogame = mediause.home_technology.videogame,
+                have_educationalgame = mediause.home_technology.educationalgame,
+                child_use_tv = mediause.technology_child_tv,
+                child_use_tv_how = mediause.tv_how,
+                child_use_dvd = mediause.technology_child_dvd,
+                child_use_dvd_how = mediause.dvd_how,
+                child_use_computer = mediause.technology_child_computer,
+                child_use_computer_how = mediause.computer_how,
+                child_use_tablet = mediause.technology_child_ipad,
+                child_use_tablet_how = mediause.ipad_how,
+                child_use_edugame = mediause.technology_child_educational,
+                child_use_edugame_how = mediause.educational_how,
+                child_use_videogame = mediause.technology_child_videogame,
+                child_use_videogame_how = mediause.videogame_how)
+```
+
+```{r}
+xtabs(formula = ~ age_group + child_use_tv, data = media_use) %>%
+  knitr::kable(., format = 'html', caption = "Child use TV") %>%
+  kableExtra::kable_classic(.)
+
+xtabs(formula = ~ age_group + child_use_tablet, data = media_use) %>%
+  knitr::kable(., format = 'html', caption = "Child use tablet") %>%
+  kableExtra::kable_classic(.)
 ```
 
 ```{r}
@@ -537,7 +588,7 @@ databraryapi::logout_db()
 - Cognition and emotion *in context*
 - Ambition and vision drive innovation
 - Future-orientation (what will future researchers want to know) challenging, but invigorating
-- What do we want our science to be about?
+- Becoming a cumulative science
 
 ---
 
