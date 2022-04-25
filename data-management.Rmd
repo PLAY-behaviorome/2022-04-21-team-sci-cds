@@ -1,6 +1,6 @@
 ---
 title: "Data management"
-subtitle: "CDS 2022 BTS workshop"
+subtitle: "CDS 2022 BTS4SSP workshop"
 author: "Rick Gilmore & Kasey Soska"
 date: "`r Sys.time()`"
 bibliography: bib/psu-repro.bib

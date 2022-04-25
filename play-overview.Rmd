@@ -1,7 +1,7 @@
 ---
 title: "Let's PLAY"
 author: "Rick Gilmore & Kasey Soska"
-subtitle: "CDS 2022 BTS workshop"
+subtitle: "CDS 2022 BTS4SSP workshop"
 date: "`r Sys.time()`"
 bibliography: bib/psu-repro.bib
 csl: bib/apa.csl
@@ -602,6 +602,7 @@ knitr::include_graphics("img/mischel-2009-becoming-cumulative.png")
 - Write grants to use the data
 - Help test, polish the `databraryapi` R package and complete the Python package
 - Help shape, test Databrary 2.0
+- Collect and share videos of your participants' behavior
 - Make developmental science a leader in big data research on children's behavior, thinking, and feeling 
 
 ```{r, child="play-splash.Rmd"}
